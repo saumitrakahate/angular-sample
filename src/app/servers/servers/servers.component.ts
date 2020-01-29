@@ -14,6 +14,11 @@ export class ServersComponent implements OnInit {
   serverCreationStatus:string = "Server is yet to be created!";
   serverName = 'Testserver';
   userName = '';
+  serverCreated = false;
+  servers = ['Test Server1','Test Server2'];
+  displayDetails = false;
+  clickLogs = [];
+  counter = 0;
 
   constructor() {
     setTimeout(()=>{this.allowNewServer=true},2000)
@@ -23,6 +28,8 @@ export class ServersComponent implements OnInit {
   }
 
   onCreateServer(){
+    this.serverCreated = true;
+    this.servers.push(this.serverName);
     this.serverCreationStatus = "Server was created successfully! Server name is: " + this.serverName;
   }
 
@@ -33,5 +40,11 @@ export class ServersComponent implements OnInit {
 
   emptyUserName(){
     this.userName = '';
+  }
+
+  changeDisplayDetails(){
+    this.displayDetails = !this.displayDetails;
+    //this.clickLogs.push(this.clickLogs.length + 1);
+    this.clickLogs.push(new Date());
   }
 }
