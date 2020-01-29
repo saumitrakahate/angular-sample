@@ -11,7 +11,8 @@
  (click)='onCreateServer()'>Add Server</button>
 
 <!--<p [innerText]="allowNewServer"></p>-->
-<p>{{ serverCreationStatus }}</p>
+<!--<p>{{ serverCreationStatus }}</p>-->
+<p *ngIf='serverCreated'>Server created with name {{ serverName }}</p>
 
 <hr>
 
@@ -24,6 +25,11 @@ class="form-control"
 (click)="emptyUserName()">Empty Username</button>
 <p>{{ 'User Name is: '}}{{ userName }}</p>
 
-
-<app-server></app-server>
-<app-server></app-server>
+<hr>
+<button (click)="changeDisplayDetails()" class="btn btn-danger">Display Details</button>
+<p *ngIf="displayDetails">Secret Password = tuna</p>
+<div *ngFor="let temp of clickLogs; let i = index"
+[ngStyle]="{backgroundColor : i >= 4 ? 'blue' : 'transparent'}"
+[ngClass]="{'white-color' : i >= 4}"> {{ temp }}</div>
+<hr>
+<app-server *ngFor="let server of servers"></app-server>
