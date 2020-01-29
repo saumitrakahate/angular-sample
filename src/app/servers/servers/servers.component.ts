@@ -10,6 +10,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ServersComponent implements OnInit {
   allowNewServer = false;
+  allowUserName = false;
+  serverCreationStatus:string = "Server is yet to be created!";
+  serverName = 'Testserver';
+  userName = '';
+
   constructor() {
     setTimeout(()=>{this.allowNewServer=true},2000)
    }
@@ -17,4 +22,16 @@ export class ServersComponent implements OnInit {
   ngOnInit() {
   }
 
+  onCreateServer(){
+    this.serverCreationStatus = "Server was created successfully! Server name is: " + this.serverName;
+  }
+
+  onUpdateServerName(event:Event){
+    console.log(event);
+    this.serverName = (<HTMLInputElement>event.target).value;
+  }
+
+  emptyUserName(){
+    this.userName = '';
+  }
 }
